@@ -2,6 +2,10 @@
 
 namespace WMC\StripeBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -11,14 +15,14 @@ class CardFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('card', 'text', array(
+            ->add('card', TextType::class, array(
                     'required' => true,
                     'attr' => array('data-stripe' => 'number'),
                     'label' => 'form.card.number',
                     'translation_domain' => 'WMCStripeBundle',
                 )
             )
-            ->add('cvc', 'integer', array(
+            ->add('cvc', IntegerType::class, array(
                     'required' => true,
                     'attr' => array('data-stripe' => 'cvc'),
                     'label' => 'form.card.cvc',
@@ -27,7 +31,7 @@ class CardFormType extends AbstractType
             )
             ->add(
                 'month',
-                'choice',
+                ChoiceType::class,
                 array(
                     'required' => true,
                     'attr' => array('data-stripe' => 'exp-month'),
@@ -38,7 +42,7 @@ class CardFormType extends AbstractType
             )
             ->add(
                 'year',
-                'choice',
+                ChoiceType::class,
                 array(
                     'required' => true,
                     'attr' => array('data-stripe' => 'exp-year'),
@@ -47,7 +51,7 @@ class CardFormType extends AbstractType
                     'translation_domain' => 'WMCStripeBundle',
                 )
             )
-            ->add('token', 'hidden');
+            ->add('token', HiddenType::class);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
