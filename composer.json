@@ -1,5 +1,5 @@
 {
-    "name": "freethinkingdesign/stripe-bundle",
+    "name": "wemakecustom/stripe-bundle",
     "type": "symfony-bundle",
     "description": "Symfony 2 StripeBundle, a wrapper for Stripe Api",
     "keywords": ["stripe", "symfony2", "bundle"],
