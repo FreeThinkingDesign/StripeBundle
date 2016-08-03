@@ -61,8 +61,14 @@ class CardFormType extends AbstractType
         );
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'wmc_stripebundle_cardformtype';
+    }
+
+    // For Symfony 2.x
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 }
